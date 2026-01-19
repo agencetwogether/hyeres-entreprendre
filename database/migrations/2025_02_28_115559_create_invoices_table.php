@@ -1,0 +1,29 @@
+<?php
+
+use App\Models\Subscription;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('invoices', function (Blueprint $table) {
+            $table->id();
+            $table->ulid()->index();
+            $table->foreignIdFor(Subscription::class);
+            $table->decimal('amount')->default('0.00');
+            $table->string('payment_mode');
+            $table->dateTime('payment_received_at');
+            $table->dateTime('starts_at');
+            $table->dateTime('ends_at');
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('invoices');
+    }
+};

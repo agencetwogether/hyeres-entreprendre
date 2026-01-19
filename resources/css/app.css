@@ -1,0 +1,273 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@import '../../vendor/filament/filament/resources/css/theme.css';
+@import "tailwindcss";
+
+@plugin "@tailwindcss/typography";
+
+@source '../../app/Filament/**/*';
+@source '../../resources/views/**/*';
+@source '../../resources/views/components/**/*';
+@source '../../resources/views/components/front/**/*';
+@source '../../resources/views/emails/**/*';
+@source '../../resources/views/errors/**/*';
+@source '../../resources/views/filament/**/*';
+@source '../../resources/views/layouts/**/*';
+@source '../../resources/views/livewire/**/*';
+@source '../../resources/views/livewire/front/**/*';
+@source '../../resources/views/livewire/front/pages/**/*';
+@source '../../resources/views/partials/**/*';
+@source '../../resources/views/vendor/**/*';
+@source '../../vendor/filament/**/*';
+@source '../../resources/js/app.js';
+
+@source '../../vendor/jaocero/radio-deck/resources/views/**/*';
+
+@import "./cookie.css";
+
+@theme {
+    --font-sans: Be Vietnam Pro;
+    --font-mulish: Be Vietnam Pro;
+    --font-reey: Be Vietnam Pro;
+
+    --color-black: #08111F;
+    --color-gray: #7780A1;
+    --color-gray-dark: #1C2331;
+
+    --color-primary: #f0aa0b;
+    --color-primary-50: #fefbe8;
+    --color-primary-100: #fdf4c4;
+    --color-primary-200: #fde88b;
+    --color-primary-300: #fbd449;
+    --color-primary-400: #f7bc18;
+    --color-primary-500: #f0aa0b;
+    --color-primary-600: #c87d06;
+    --color-primary-700: #9f5909;
+    --color-primary-800: #84460f;
+    --color-primary-900: #703913;
+    --color-primary-950: #411c07;
+
+    --color-secondary: #7a81b7;
+    --color-secondary-50: #f4f5fa;
+    --color-secondary-100: #e7e9f2;
+    --color-secondary-200: #d4d8e9;
+    --color-secondary-300: #b7bed9;
+    --color-secondary-400: #949dc6;
+    --color-secondary-500: #7a81b7;
+    --color-secondary-600: #676ba9;
+    --color-secondary-700: #5c5c99;
+    --color-secondary-800: #504f7e;
+    --color-secondary-900: #383856;
+    --color-secondary-950: #2b2b40;
+}
+
+@utility container {
+    margin-inline: auto;
+    padding-inline: 1rem;
+}
+
+[x-cloak] {
+    display: none !important;
+}
+
+.fi-fo-rich-editor {
+    &.has-max-height {
+        @apply flex flex-col;
+
+        .fi-input-wrp-content-ctn {
+            @apply h-full;
+
+            > div {
+                @apply h-full flex flex-col;
+
+                .fi-fo-rich-editor-main {
+                    @apply overflow-hidden flex-1;
+
+                    .fi-fo-rich-editor-content {
+                        @apply overflow-y-auto;
+
+                        .tiptap {
+                            @apply h-auto min-h-full;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.richeditor-custom {
+    & .color {
+        @apply text-(--color) dark:text-(--dark-color);
+    }
+
+    & img {
+        @apply inline-block;
+    }
+
+    ol {
+        padding-inline-start: calc(var(--spacing) * 8);
+        list-style-type: decimal;
+    }
+
+    ul {
+        padding-inline-start: calc(var(--spacing) * 8);
+        list-style-type: disc;
+    }
+
+    ol li,
+    ul li {
+        padding-inline-start: calc(var(--spacing) * 1);
+    }
+
+    ol li + li,
+    ul li + li {
+        margin-top: calc(var(--spacing) * 2);
+    }
+
+    a {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        text-decoration-thickness: 1px;
+    }
+
+    a:hover {
+        text-decoration-thickness: 2px;
+    }
+
+    p {
+        margin-top: calc(var(--spacing) * 2);
+    }
+
+    h2 {
+        font-size: var(--text-lg);
+        line-height: calc(var(--spacing) * 10);
+        font-weight: var(--font-weight-semibold);
+    }
+
+    h3 {
+        font-size: var(--text-base);
+        line-height: calc(var(--spacing) * 8);
+        font-weight: var(--font-weight-semibold);
+    }
+
+
+    table {
+        width: 100%;
+        table-layout: auto;
+        margin-top: 2em;
+        margin-bottom: 2em;
+        font-size: var(--text-base);
+        line-height: 2;
+    }
+
+
+    tbody tr {
+        border-bottom-width: 1px;
+    }
+
+    tbody tr:last-child {
+        border-bottom-width: 0;
+    }
+
+    tbody td {
+        padding: 0;
+        vertical-align: baseline;
+    }
+
+    tbody td:first-child {
+        padding-inline-start: 0;
+    }
+
+    tbody td:last-child {
+        padding-inline-end: 0;
+    }
+
+    th {
+        background-color: var(--color-slate-50);
+    }
+
+    th,
+    td {
+        text-align: start;
+    }
+}
+
+@layer components {
+    .btn {
+        @apply inline-block rounded-2xl bg-primary py-4 px-7 text-center text-sm font-extrabold uppercase text-black transition  hover:scale-105 hover:bg-secondary hover:text-white;
+    }
+
+    .heading {
+        @apply mb-10 lg:mb-14;
+    }
+
+    .heading h6 {
+        @apply mb-3 text-lg font-extrabold text-primary sm:mb-4;
+    }
+
+    .heading h4 {
+        @apply text-2xl font-extrabold text-black dark:text-white sm:text-3xl lg:text-[40px] lg:leading-[50px]!;
+    }
+
+    .heading-gradiant {
+        @apply mb-12;
+    }
+
+    .heading-gradiant h4 {
+        @apply relative z-[1] text-3xl font-black uppercase leading-[50px] text-black before:absolute before:top-5 before:z-[-1] before:h-6
+        before:w-[100px] before:bg-primary/20 ltr:pl-0.5 ltr:before:left-0 ltr:before:right-auto rtl:pr-0.5 rtl:before:right-0 rtl:before:left-auto dark:text-white md:text-[40px] md:leading-[60px] md:before:h-[30px];
+    }
+
+    .heading-gradiant h4 span {
+        @apply bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent;
+    }
+
+    .heading-gradiant p {
+        @apply mt-3 font-bold;
+    }
+
+    .dark .light-mode-btn {
+        @apply block;
+    }
+
+    .dark .dark-mode-btn {
+        @apply hidden;
+    }
+
+    header .menus {
+        @apply fixed top-0 z-[52] h-screen w-full max-w-sm gap-9 bg-white transition-all duration-500 -right-full dark:bg-gray-dark lg:static lg:h-auto lg:max-w-none lg:bg-transparent dark:lg:bg-transparent;
+    }
+
+    header .menus > ul {
+        @apply relative flex  flex-col divide-y divide-gray/10  font-bold text-black  lg:flex-row lg:items-center lg:gap-11 lg:divide-y-0  lg:p-0 lg:text-primary;
+    }
+
+    header .menus > ul li > a {
+        @apply flex items-center justify-between py-4 px-4 transition hover:text-primary-800 dark:text-white dark:hover:text-primary lg:px-0 lg:py-10 hover:lg:scale-110;
+    }
+
+    header .menus > ul li > a.active {
+        @apply text-secondary lg:scale-110;
+    }
+
+    header .menus .submenu {
+        @apply invisible z-50 mt-5 hidden grid-cols-1 gap-x-4 rounded-lg py-3 text-sm font-medium text-black opacity-0 transition-all dark:text-white lg:absolute lg:top-full lg:grid lg:min-w-max lg:-translate-x-1/4 lg:grid-cols-1 lg:bg-white lg:shadow-lg lg:dark:bg-gray-dark xl:left-1/4 xl:grid-cols-1;
+    }
+
+    .submenu {
+        @apply group-hover:visible group-hover:mt-0 group-hover:grid group-hover:opacity-100;
+    }
+
+    header .menus .submenu a {
+        @apply block py-2.5 px-8 transition hover:text-secondary lg:px-5 hover:lg:scale-105;
+    }
+
+    header .menus .submenu a.active {
+        @apply text-secondary lg:scale-105;
+    }
+}
+
+header .menus.open-menus {
+    @apply overflow-y-auto right-0;
+}

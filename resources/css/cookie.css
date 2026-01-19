@@ -1,0 +1,207 @@
+#cookies-policy.cookies {
+    @apply fixed bottom-0 right-0 text-base max-h-full max-w-full overflow-auto z-[9999];
+    transition: transform .2s ease-out, opacity .2s ease-out;
+}
+
+#cookies-policy.cookies--closing {
+    @apply opacity-0 translate-y-[10px];
+}
+
+#cookies-policy.cookies--show .cookies__btn--customize {
+    @apply border-b border-gray-200 dark:border-slate-600 border-t-0;
+}
+
+#cookies-policy.cookies--show .cookies__btn svg {
+    @apply rotate-180;
+}
+
+#cookies-policy.cookies--no-js .cookies__expandable:target,
+#cookies-policy.cookies--no-js .cookies__section .cookies__expandable {
+    @apply h-auto opacity-100 visible;
+    transition: height .3s ease-out, opacity .3s ease-out;
+}
+
+#cookies-policy.cookies--no-js .cookies__details {
+    @apply hidden;
+}
+
+#cookies-policy.cookies--no-js .cookies__sections {
+    @apply max-h-fit;
+}
+
+#cookies-policy.cookies--no-js svg {
+    @apply hidden;
+}
+
+#cookies-policy .cookies__expandable {
+    @apply block h-0 opacity-0 overflow-hidden invisible;
+    transition: height .3s ease-out, opacity .3s ease-out, visibility 0s linear .3s;
+}
+
+#cookies-policy .cookies__expandable--open {
+    @apply h-auto opacity-100 visible;
+    transition: height .3s ease-out, opacity .3s ease-out;
+}
+
+#cookies-policy .cookies__alert {
+    @apply bg-white dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-lg shadow-md m-[4%] max-h-[90%] max-w-[90%] w-96;
+}
+
+#cookies-policy .cookies__container {
+    @apply block h-auto opacity-100 overflow-hidden visible;
+    transition: height .3s ease-out, opacity .3s ease-out, visibility 0s linear .1s;
+}
+
+#cookies-policy .cookies__container--hide {
+    @apply h-0 opacity-0 invisible;
+    transition: height .3s ease-out, opacity .3s ease-out, visibility 0s linear .3s;
+}
+
+#cookies-policy .cookies__wrapper {
+    @apply py-4 px-6;
+}
+
+#cookies-policy .cookies__title {
+    @apply text-gray-500 dark:text-white font-bold;
+}
+
+#cookies-policy .cookies__intro {
+    @apply text-gray-500 dark:text-white text-sm font-medium;
+}
+
+#cookies-policy .cookies__intro p {
+    @apply mt-4;
+}
+
+#cookies-policy .cookies__intro p:first-child {
+    @apply mt-0;
+}
+
+#cookies-policy .cookies__intro a {
+    @apply text-inherit underline;
+    transition: color .2s ease-out
+}
+
+#cookies-policy .cookies__intro a:focus,
+#cookies-policy .cookies__intro a:hover {
+    @apply text-gray-600;
+}
+
+#cookies-policy .cookies__actions {
+    @apply flex flex-col gap-1 justify-between mt-4;
+}
+
+#cookies-policy .cookies__btn--customize {
+    @apply text-gray-500 dark:text-white text-sm items-center flex font-semibold justify-between relative border-t border-gray-200 dark:border-slate-600 leading-4 py-4 px-6;
+}
+
+#cookies-policy .cookies__btn svg {
+    transition: transform .2s ease-out
+}
+
+#cookies-policy .cookies__sections {
+    @apply max-h-[450px] overflow-scroll;
+}
+
+#cookies-policy .cookies__section {
+    @apply py-0 px-6;
+}
+
+#cookies-policy .cookies__section + .cookies__section {
+    @apply border-t border-gray-200 dark:border-slate-600;
+}
+
+#cookies-policy .cookies__box,
+#cookies-policy .cookies__category {
+    @apply block overflow-hidden relative;
+}
+
+#cookies-policy .cookies__category input {
+    @apply block m-0 p-0 absolute right-[105%] top-0;
+}
+
+#cookies-policy .cookies__box {
+    @apply cursor-pointer leading-6 py-4 pr-12 pl-0;
+}
+
+#cookies-policy .cookies__box:after,
+#cookies-policy .cookies__box:before {
+    @apply rounded-xl content-[""] block absolute top-1/2;
+}
+
+#cookies-policy .cookies__box:after {
+    @apply bg-gray-200 h-6 -mt-3 right-0 transition duration-200 w-10 z-0;
+}
+
+#cookies-policy .cookies__box:before {
+    @apply bg-white dark:bg-slate-700 h-4 -mt-2 right-3 -translate-x-2 transform duration-200 w-4 z-10;
+}
+
+#cookies-policy .cookies__category input:checked + .cookies__box:after {
+    @apply bg-primary opacity-100;
+}
+
+#cookies-policy .cookies__category input:disabled + .cookies__box:after {
+    @apply opacity-60;
+}
+
+#cookies-policy .cookies__category input:checked + .cookies__box:before {
+    @apply translate-x-2;
+}
+
+#cookies-policy .cookies__label {
+    @apply text-gray-500 dark:text-white text-sm font-semibold;
+}
+
+#cookies-policy .cookies__info {
+    @apply text-gray-500 dark:text-white text-sm font-medium;
+}
+
+#cookies-policy .cookies__details {
+    @apply text-primary-700 block text-sm mt-2 mr-0 mb-3 transition-colors;
+}
+
+#cookies-policy .cookies__details:focus,
+#cookies-policy .cookies__details:hover {
+    @apply text-primary-700;
+}
+
+#cookies-policy .cookies__definitions {
+    @apply text-sm pt-3;
+}
+
+#cookies-policy .cookies__cookie + .cookies__cookie {
+    @apply mt-3;
+}
+
+#cookies-policy .cookies__name {
+    @apply text-gray-400 dark:text-gray-300 inline font-semibold leading-5;
+}
+
+#cookies-policy .cookies__duration {
+    @apply text-gray-400 dark:text-gray-300 inline text-right;
+}
+
+#cookies-policy .cookies__description {
+    @apply text-gray-400 dark:text-gray-300 block leading-[120%] pt-2 text-left w-full;
+}
+
+#cookies-policy .cookies__save {
+    @apply border-t border-solid border-gray-200 dark:border-slate-600 flex justify-end mt-1.5 py-3 px-6;
+}
+
+#cookies-policy .cookiesBtn {
+    @apply w-full;
+}
+
+#cookies-policy .cookiesBtn__link {
+    @apply transition duration-300 ease-in-out focus:ring-0 focus:outline-hidden bg-primary hover:bg-primary-700 text-white block text-sm font-semibold px-3.5 py-3 rounded w-full;
+}
+
+#cookies-policy .cookiesBtnOutlined__link {
+    @apply transition duration-300 ease-in-out focus:ring-0 focus:outline-hidden border bg-primary-50 border-primary hover:bg-primary-700 hover:border-primary-700 text-primary hover:text-white block text-sm font-semibold px-3.5 py-3 rounded-sm w-full;
+}
+
+.page .cookiebtn {
+    @apply inline;
+}

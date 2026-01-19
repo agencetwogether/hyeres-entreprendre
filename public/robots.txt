@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /politique-de-confidentialite
+Disallow: /mentions-legales
+Disallow: /admin
+Disallow: /scheduler-edit
+Disallow: /error-mailer

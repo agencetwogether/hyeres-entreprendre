@@ -1,0 +1,43 @@
+Recherche erreur quand SendDocument est envoyé, erreur model non trouve
+//
+Illuminate\Database\Eloquent\ModelNotFoundException: No query results for model [App\Models\ContactInvitation]. in /homepages/23/d4298669514/htdocs/www/v1/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php:749
+Stack trace:
+#0 /homepages/23/d4298669514/htdocs/www/v1/vendor/laravel/framework/src/Illuminate/Queue/SerializesAndRestoresModelIdentifiers.php(110): Illuminate\Database\Eloquent\Builder->firstOrFail()
+#1 /homepages/23/d4298669514/htdocs/www/v1/vendor/laravel/framework/src/Illuminate/Queue/SerializesAndRestoresModelIdentifiers.php(63): App\Mails\SendDocument->restoreModel()
+#2 /homepages/23/d4298669514/htdocs/www/v1/vendor/laravel/framework/src/Illuminate/Queue/SerializesModels.php(93): App\Mails\SendDocument->getRestoredPropertyValue()
+#3 [internal function]: App\Mails\SendDocument->__unserialize()
+#4 /homepages/23/d4298669514/htdocs/www/v1/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php(95): unserialize()
+#5 /homepages/23/d4298669514/htdocs/www/v1/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php(62): Illuminate\Queue\CallQueuedHandler->getCommand()
+#6 /homepages/23/d4298669514/htdocs/www/v1/vendor/laravel/framework/src/Illuminate/Queue/Jobs/Job.php(102): Illuminate\Queue\CallQueuedHandler->call()
+#7 /homepages/23/d4298669514/htdocs/www/v1/vendor/laravel/framework/src/Illuminate/Queue/Worker.php(441): Illuminate\Queue\Jobs\Job->fire()
+#8 /homepages/23/d4298669514/htdocs/www/v1/vendor/laravel/framework/src/Illuminate/Queue/Worker.php(391): Illuminate\Queue\Worker->process()
+#9 /homepages/23/d4298669514/htdocs/www/v1/vendor/laravel/framework/src/Illuminate/Queue/Worker.php(177): Illuminate\Queue\Worker->runJob()
+#10 /homepages/23/d4298669514/htdocs/www/v1/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php(148): Illuminate\Queue\Worker->daemon()
+#11 /homepages/23/d4298669514/htdocs/www/v1/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php(131): Illuminate\Queue\Console\WorkCommand->runWorker()
+#12 /homepages/23/d4298669514/htdocs/www/v1/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Illuminate\Queue\Console\WorkCommand->handle()
+#13 /homepages/23/d4298669514/htdocs/www/v1/vendor/laravel/framework/src/Illuminate/Container/Util.php(43): Illuminate\Container\BoundMethod::{closure:Illuminate\Container\BoundMethod::call():35}()
+#14 /homepages/23/d4298669514/htdocs/www/v1/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(96): Illuminate\Container\Util::unwrapIfClosure()
+#15 /homepages/23/d4298669514/htdocs/www/v1/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(35): Illuminate\Container\BoundMethod::callBoundMethod()
+#16 /homepages/23/d4298669514/htdocs/www/v1/vendor/laravel/framework/src/Illuminate/Container/Container.php(754): Illuminate\Container\BoundMethod::call()
+#17 /homepages/23/d4298669514/htdocs/www/v1/vendor/laravel/framework/src/Illuminate/Console/Command.php(211): Illuminate\Container\Container->call()
+#18 /homepages/23/d4298669514/htdocs/www/v1/vendor/symfony/console/Command/Command.php(279): Illuminate\Console\Command->execute()
+#19 /homepages/23/d4298669514/htdocs/www/v1/vendor/laravel/framework/src/Illuminate/Console/Command.php(180): Symfony\Component\Console\Command\Command->run()
+#20 /homepages/23/d4298669514/htdocs/www/v1/vendor/symfony/console/Application.php(1094): Illuminate\Console\Command->run()
+#21 /homepages/23/d4298669514/htdocs/www/v1/vendor/symfony/console/Application.php(342): Symfony\Component\Console\Application->doRunCommand()
+#22 /homepages/23/d4298669514/htdocs/www/v1/vendor/symfony/console/Application.php(193): Symfony\Component\Console\Application->doRun()
+#23 /homepages/23/d4298669514/htdocs/www/v1/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(197): Symfony\Component\Console\Application->run()
+#24 /homepages/23/d4298669514/htdocs/www/v1/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1234): Illuminate\Foundation\Console\Kernel->handle()
+#25 /homepages/23/d4298669514/htdocs/www/v1/artisan(13): Illuminate\Foundation\Application->handleCommand()
+#26 {main}
+//
+
+
+masquer ou retravailler l'association d'un user a l'edition d'un membre
+
+Pour la verif des souscriptions mettre le lien de connexion a la plateforme que si un user est asocié au memebre
+
+Revoir checksubscription
+
+
+
+
