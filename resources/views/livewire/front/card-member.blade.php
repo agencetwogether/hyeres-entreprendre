@@ -44,8 +44,11 @@
             'bg-primary' => $is_partner,
             'bg-secondary' => $is_member,
             'bg-blue-500' => $is_office,
-        ])>{{ $member->member_type->getLabel() }} @if ($is_office)
-                - {{ $member->office_role->getLabel() }}
+        ])>
+            @if ($is_partner || $is_member || $is_office)
+                {{ $member->member_type->getLabel() }} @if ($is_office && filled($member->office_role))
+                    - {{ $member->office_role->getLabel() }}
+                @endif
             @endif
         </span>
     </div>
