@@ -80,8 +80,7 @@ class PostFields
             ->toolbarButtons(fn (RichEditorService $editorService): array => $editorService->getToolbarButtonsEditorComplete())
             ->textColors(fn (RichEditorService $editorService): array => $editorService->getColors())
             ->fileAttachmentsDirectory('posts')
-            ->resizableImages()
-            ->customHeight();
+            ->resizableImages();
     }
 
     public static function getPublishedAt(): DatePicker

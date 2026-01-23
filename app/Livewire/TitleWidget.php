@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use Closure;
 use Filament\Support\Concerns\EvaluatesClosures;
 use Filament\Support\Concerns\HasColor;
 use Filament\Widgets\Widget;

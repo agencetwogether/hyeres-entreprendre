@@ -17,7 +17,8 @@
         'bg-custom-50 dark:bg-custom-400/10' => filled($this->getBgColor()),
     ]) style="{{ $bgStyles }}">
         <div class="flex flex-col items-center justify-center">
-            <h1 class="text-lg font-semibold {{ $titleColor }}">{{ $this->getTitle() }}</h1>
+            <h1 class="text-lg font-semibold text-custom-400 dark:text-custom-500" style="{{ $textStyles }}">
+                {{ $this->getTitle() }}</h1>
         </div>
     </x-filament::section>
 </x-filament-widgets::widget>
