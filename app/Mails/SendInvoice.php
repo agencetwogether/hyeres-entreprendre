@@ -67,7 +67,7 @@ class SendInvoice extends Mailable implements ShouldQueue
             'layouts.pdf.invoice',
             [
                 'invoice' => $this->invoice,
-                'planDescription' => RichContentRenderer::make($this->invoice->subscription->plan->description),
+                'planDescription' => filled($this->invoice->subscription->plan->description) ? RichContentRenderer::make($this->invoice->subscription->plan->description) : '',
             ]
         );
 

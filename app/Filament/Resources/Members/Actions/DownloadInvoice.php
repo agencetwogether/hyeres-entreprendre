@@ -62,7 +62,7 @@ class DownloadInvoice extends Action
                     'layouts.pdf.invoice',
                     [
                         'invoice' => $invoice,
-                        'planDescription' => RichContentRenderer::make($invoice->subscription->plan->description),
+                        'planDescription' => filled($invoice->subscription->plan->description) ? RichContentRenderer::make($invoice->subscription->plan->description) : '',
                     ]
                 )
             )->stream();
