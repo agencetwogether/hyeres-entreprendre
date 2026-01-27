@@ -1322,6 +1322,7 @@ return [
                 'plan_type' => 'Type d\'adhésion',
                 'plan_type_label' => ':name (:price :currency pour :period :interval)',
                 'plan_type_label_discounted' => ':name (<span class="line-through">:price :currency pour :period :interval</span>)<br>Réduction de <span class="text-success-600">:discount_rate</span> soit :new_price :currency pour :period :interval',
+                'plan_outdated' => 'Attention<br>Entre le moment de la demande à rejoindre l\'association et le traitement de celle-ci, la période d\'adhésion est dépassée (elle allait du :startDateOutdated au :endDateOutdated).<br>En poursuivant ci-dessous, la période d\'adhésion sera rétablie sur celle en cours, soit du :startDate au :endDate.<br><br><strong>Pour rappel, la souscription demandée était</strong><br>:planOutdated',
                 'is_active' => 'Cotisation à jour',
                 'is_published' => 'Visible sur le site',
                 'send_notification' => 'Envoyer un email notifiant ce membre de la création de sa fiche sur le site ?',

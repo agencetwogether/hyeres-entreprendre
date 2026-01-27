@@ -9,7 +9,10 @@ use App\Enums\OfficeRole;
 use App\Enums\SocialNetwork;
 use App\Models\Member;
 use App\Models\User;
+use App\Services\PlanService;
 use App\Services\RichEditorService;
+use Awcodes\Shout\Components\Shout;
+use Carbon\Carbon;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Repeater\TableColumn;
@@ -222,6 +225,28 @@ class MemberFields
             ->columnSpanFull();
     }*/
 
+    public static function getCheckOutdatedPlanChosen(): Shout
+    {
+        return Shout::make('checkOutdatedPlanChosen')
+            ->content(function (Model $record, PlanService $planService) {
+
+                $plan = $record->onePlanSubscriptions;
+                $nextDates = $planService->calculateNewPeriod($plan->plan->invoice_interval, $plan->plan->invoice_period, Carbon::now()->startOfYear());
+
+                return new HtmlString(__('app.members.form.label.plan_outdated',
+                    [
+                        'startDateOutdated' => $plan->starts_at->format('d/m/Y'),
+                        'endDateOutdated' => $plan->ends_at->format('d/m/Y'),
+                        'startDate' => $nextDates['starts_at']->format('d/m/Y'),
+                        'endDate' => $nextDates['ends_at']->format('d/m/Y'),
+                        'planOutdated' => filled($plan->discount_rate) ? $planService->getTextPlanDiscounted($plan) : $planService->getTextPlan($plan),
+                    ]
+                ));
+            })
+            ->color('danger');
+
+    }
+
     public static function getPlan(): Text
     {
         return Text::make(function (Model $record, Get $get): HtmlString {
@@ -233,9 +258,30 @@ class MemberFields
             }
 
             if ($get('has_discount') && $get('discount_rate')) {
-                $newPrice = $record->onePlanSubscriptions?->plan->price * (1 - $get('discount_rate') / 100);
+                $discountRate = $get('discount_rate') instanceof DiscountRate ? $get('discount_rate')->value : $get('discount_rate');
 
-                return new HtmlString(__('app.members.form.label.plan_type_label_discounted', ['name' => $record->onePlanSubscriptions?->name, 'period' => $record->onePlanSubscriptions?->plan->invoice_period, 'interval' => IntervalPeriod::from($record->onePlanSubscriptions?->plan->invoice_interval)->getLabel(), 'price' => $record->onePlanSubscriptions?->plan->price, 'currency' => $record->onePlanSubscriptions?->plan->currency, 'discount_rate' => DiscountRate::from($get('discount_rate'))->getLabel(), 'new_price' => $newPrice]));
+                $newPrice = $record->onePlanSubscriptions?->plan->price * (1 - $discountRate / 100);
+
+                return new HtmlString(__('app.members.form.label.plan_type_label_discounted', ['name' => $record->onePlanSubscriptions?->name, 'period' => $record->onePlanSubscriptions?->plan->invoice_period, 'interval' => IntervalPeriod::from($record->onePlanSubscriptions?->plan->invoice_interval)->getLabel(), 'price' => $record->onePlanSubscriptions?->plan->price, 'currency' => $record->onePlanSubscriptions?->plan->currency, 'discount_rate' => DiscountRate::from($discountRate)->getLabel(), 'new_price' => $newPrice]));
+
+            }
+
+            return new HtmlString(__('app.members.form.label.plan_type_label', ['name' => $record->onePlanSubscriptions?->name, 'period' => $record->onePlanSubscriptions?->plan->invoice_period, 'interval' => IntervalPeriod::from($record->onePlanSubscriptions?->plan->invoice_interval)->getLabel(), 'price' => $record->onePlanSubscriptions?->plan->price, 'currency' => $record->onePlanSubscriptions?->plan->currency]));
+
+        })
+            ->color('neutral')
+            ->columnSpanFull();
+    }
+
+    public static function getNewPlanToReplaceOutdated(): Text
+    {
+        return Text::make(function (Model $record, Get $get): HtmlString {
+            if ($get('has_discount') && $get('discount_rate')) {
+                $discountRate = $get('discount_rate') instanceof DiscountRate ? $get('discount_rate')->value : $get('discount_rate');
+
+                $newPrice = $record->onePlanSubscriptions?->plan->price * (1 - $discountRate / 100);
+
+                return new HtmlString(__('app.members.form.label.plan_type_label_discounted', ['name' => $record->onePlanSubscriptions?->name, 'period' => $record->onePlanSubscriptions?->plan->invoice_period, 'interval' => IntervalPeriod::from($record->onePlanSubscriptions?->plan->invoice_interval)->getLabel(), 'price' => $record->onePlanSubscriptions?->plan->price, 'currency' => $record->onePlanSubscriptions?->plan->currency, 'discount_rate' => DiscountRate::from($discountRate)->getLabel(), 'new_price' => $newPrice]));
 
             }
 

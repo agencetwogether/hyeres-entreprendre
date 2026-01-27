@@ -4,7 +4,9 @@ namespace App\Filament\Resources\Members\Actions;
 
 use App\Filament\Resources\Members\Schemas\Components\MemberFields;
 use App\Mails\ConfirmMemberCreated;
+use App\Services\PlanService;
 use Arr;
+use Carbon\Carbon;
 use Filament\Actions\Action;
 use Filament\Schemas\Components\Fieldset;
 use Filament\Schemas\Components\Grid;
@@ -122,26 +124,56 @@ class Approve extends Action
             Section::make(__('app.members.form.tabs.plans_description_approve'))
                 ->icon('phosphor-tag')
                 ->iconColor('primary')
-                ->schema([
-                    MemberFields::getPlan(),
-                    MemberFields::getApplyDiscount()
-                        ->hidden(fn (Model $record): bool => filled($record->onePlanSubscriptions->discount_rate)),
-                    MemberFields::getMemberType(),
-                    MemberFields::getOfficeRole(),
-                ])
+                ->schema(function (Model $record) {
+
+                    if (filled($record->onePlanSubscriptions) && ! $record->onePlanSubscriptions->active()) {
+                        return [
+                            MemberFields::getCheckOutdatedPlanChosen(),
+                            MemberFields::getApplyDiscount(),
+                            MemberFields::getNewPlanToReplaceOutdated(),
+                            MemberFields::getMemberType(),
+                            MemberFields::getOfficeRole(),
+                        ];
+                    }
+
+                    return [
+                        MemberFields::getPlan(),
+                        MemberFields::getApplyDiscount()
+                            ->hidden(fn (Model $record): bool => filled($record->onePlanSubscriptions->discount_rate)),
+                        MemberFields::getMemberType(),
+                        MemberFields::getOfficeRole(),
+                    ];
+                })
                 ->collapsed(fn (?Model $record): bool => filled($record->member_type)),
         ]);
 
-        $this->action(function (array $data, Model $record): void {
+        $this->action(function (array $data, Model $record, PlanService $planService): void {
 
             $data = Arr::add($data, 'is_draft', false);
 
             $result = $record->update($data);
 
-            if (data_get($data, 'has_discount', false)) {
+            $hasDiscount = data_get($data, 'has_discount', false);
+
+            // Plan outdated
+            if (! $record->onePlanSubscriptions->active()) {
+
+                $plan = $record->onePlanSubscriptions->plan;
+                $newDates = $planService->calculateNewPeriod($plan->invoice_interval, $plan->invoice_period, Carbon::now()->startOfYear());
+
                 $record->onePlanSubscriptions->update([
-                    'discount_rate' => $data['discount_rate'],
+                    'discount_rate' => $hasDiscount ? $data['discount_rate'] : null,
+                    'trial_ends_at' => $newDates['starts_at'],
+                    'starts_at' => $newDates['starts_at'],
+                    'ends_at' => $newDates['ends_at'],
                 ]);
+
+            } else {
+                if ($hasDiscount) {
+                    $record->onePlanSubscriptions->update([
+                        'discount_rate' => $data['discount_rate'],
+                    ]);
+                }
             }
 
             // send email au membre pour lui dire que son inscription est approuvée avec piece jointe RIB
