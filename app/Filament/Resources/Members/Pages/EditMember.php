@@ -52,4 +52,16 @@ class EditMember extends EditRecord
 
         return $data;
     }
+
+    protected function afterSave(): void
+    {
+        if (filled($user = $this->record->user)) {
+            $user->update([
+                'firstname' => $this->data['firstname'],
+                'name' => $this->data['name'],
+                'phone' => $this->data['phone'],
+                'email' => $this->data['email'],
+            ]);
+        }
+    }
 }

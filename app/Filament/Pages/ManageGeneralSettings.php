@@ -324,10 +324,16 @@ class ManageGeneralSettings extends SettingsPage
     protected function mutateFormDataBeforeSave(array $data): array
     {
         $new_data = [];
-        foreach ($data['emails_client'] as $item) {
-            $new_data[$item['key']] = $item;
+        $data['emails_client'] = data_get($data, 'emails_client');
+
+        if (filled($data['emails_client'])) {
+            foreach ($data['emails_client'] as $item) {
+                $new_data[$item['key']] = $item;
+            }
+            $data['emails_client'] = $new_data;
+        } else {
+            $data['emails_client'] = [];
         }
-        $data['emails_client'] = $new_data;
 
         return $data;
     }

@@ -25,9 +25,9 @@ class PartnersLogo extends Component
             ->where('member_type', MemberType::PARTNER)
             ->orWhere('member_type', MemberType::OFFICE)
             ->where('is_published', true)
-            ->whereHas('onePlanSubscriptions', function (Builder $query) {
+            /*->whereHas('onePlanSubscriptions', function (Builder $query) {
                 $query->findActive();
-            })
+            })*/
             ->get();
 
     }

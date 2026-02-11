@@ -23,9 +23,9 @@ class MembersLogo extends Component
         $this->members = Member::query()
             ->where('member_type', MemberType::MEMBER)
             ->where('is_published', true)
-            ->whereHas('onePlanSubscriptions', function (Builder $query) {
+            /*->whereHas('onePlanSubscriptions', function (Builder $query) {
                 $query->findActive();
-            })
+            })*/
             ->get();
 
     }

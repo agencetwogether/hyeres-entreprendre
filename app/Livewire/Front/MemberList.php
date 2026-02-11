@@ -58,9 +58,9 @@ class MemberList extends Component
     {
         $this->memberIdChunks = Member::query()
             ->where('is_published', true)
-            ->whereHas('onePlanSubscriptions', function (Builder $query) {
+            /*->whereHas('onePlanSubscriptions', function (Builder $query) {
                 $query->findActive();
-            })
+            })*/
             ->inRandomOrder();
 
         if ($this->memberType && $this->memberType !== 'activity') {
