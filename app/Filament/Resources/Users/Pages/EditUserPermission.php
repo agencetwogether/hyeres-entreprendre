@@ -4,11 +4,12 @@ namespace App\Filament\Resources\Users\Pages;
 
 use App\Filament\Forms\Components\PermissionGroup;
 use App\Filament\Resources\Users\UserResource;
-use Awcodes\Shout\Components\Shout;
 use Filament\Resources\Pages\EditRecord;
+use Filament\Schemas\Components\Callout;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\HtmlString;
 
 class EditUserPermission extends EditRecord
 {
@@ -38,10 +39,10 @@ class EditUserPermission extends EditRecord
                     ->icon('phosphor-shield-plus')
                     ->iconColor('success')
                     ->schema([
-                        Shout::make('reminder_role')
-                            ->content(view('filament.resources.users.permissions.assign', ['user' => $this->getRecord()]))
+                        Callout::make(__('app.pages.edit-permission.form.placeholder.for_information'))
+                            ->description(new HtmlString(view('filament.resources.users.permissions.assign', ['user' => $this->getRecord()])))
+                            ->info()
                             ->columnSpanFull(),
-
                         PermissionGroup::make('permissions')
                             ->hiddenLabel()
                             ->searchable()

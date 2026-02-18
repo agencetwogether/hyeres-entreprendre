@@ -70,9 +70,7 @@
         <p class="text-xl uppercase">{{ $member->company_name }}</p>
     </div>
     <div class="my-6 p-2">
-        <img class="light-mode-btn hidden object-cover object-center w-full mx-auto"
-            src="{{ $member->getFirstMediaUrl('company_logo', 'webp') }}" alt="{{ $member->company_name }}">
-        <img class="dark-mode-btn object-cover object-center w-full mx-auto"
+        <img class="object-cover object-center w-full mx-auto"
             src="{{ $member->getFirstMediaUrl('company_logo', 'webp') }}" alt="{{ $member->company_name }}">
     </div>
     <div class="flex flex-col gap-4 p-4">

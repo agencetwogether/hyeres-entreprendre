@@ -2,8 +2,8 @@
     <div class="max-w-6xl mx-auto px-4">
         <div class="relative flex items-center justify-between py-5 lg:py-0">
             <a href="{{ config('app.url') }}">
-                <img class="h-12 lg:h-20 light-mode-btn hidden" src="{{ getClientLogoDark() }}" alt="logo" />
-                <img class="h-12 lg:h-20 dark-mode-btn" src="{{ getClientLogo() }}" alt="logo" />
+                <img class="h-12 lg:h-20 hidden dark:block" src="{{ getClientLogoDark() }}" alt="logo" />
+                <img class="h-12 lg:h-20 dark:hidden" src="{{ getClientLogo() }}" alt="logo" />
             </a>
             <div class="flex items-center">
                 <div class="overlay fixed inset-0 z-[51] bg-black/60 lg:hidden" :class="[openMenu ? '' : 'hidden']"
@@ -12,7 +12,7 @@
                 <nav class="menus" :class="[openMenu ? 'open-menus' : '']">
                     <div class="border-b border-gray/10 text-right lg:hidden">
                         <button @click="[openMenu = false]" type="button" class="p-4">
-                            <x-icon class="h-6 w-6 text-black dark:text-white" name="heroicon-o-x-mark"></x-icon>
+                            <x-icon class="h-6 w-6 text-black dark:text-white" name="heroicon-o-x-mark" />
                         </button>
                     </div>
                     <x-filament-menu-builder::menu slug="header" view="partials.menu-list" />
@@ -31,15 +31,15 @@
                     <li>
                         <button type="button"
                             class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 dark:bg-slate-700 text-white hover:text-primary theme-manager-btn">
-                            <x-icon class="h-6 w-6 dark-mode-btn" name="heroicon-o-moon"></x-icon>
-                            <x-icon class="h-6 w-6 light-mode-btn hidden" name="heroicon-o-sun"></x-icon>
+                            <x-icon class="h-6 w-6 dark:hidden" name="heroicon-o-moon" />
+                            <x-icon class="h-6 w-6 hidden dark:block" name="heroicon-o-sun" />
                         </button>
                     </li>
                 </ul>
                 <button type="button"
                     class="flex h-10 w-10 items-center justify-center rounded-full bg-primary lg:hidden"
                     @click="[ openMenu = !openMenu ]">
-                    <x-icon class="h-6 w-6 text-white" name="heroicon-o-bars-4"></x-icon>
+                    <x-icon class="h-6 w-6 text-white" name="heroicon-o-bars-4" />
                 </button>
             </div>
         </div>

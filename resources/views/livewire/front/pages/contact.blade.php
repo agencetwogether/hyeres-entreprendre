@@ -1,6 +1,6 @@
 <x-slot:seo>
     {!! seo($seo ?? null) !!}
-</x-slot>
+</x-slot:seo>
 
 <section>
     <x-front.banner-page
@@ -19,7 +19,7 @@
                         </div>
                     @endif
 
-                    <div class="space-y-4 p-5 lg:py-20 lg:px-16 richeditor-custom text-gray-700">
+                    <div class="space-y-4 p-5 lg:py-20 lg:px-16 richeditor-custom text-gray-700 dark:text-gray-300">
                         {{ $this->renderContent() }}
                     </div>
 

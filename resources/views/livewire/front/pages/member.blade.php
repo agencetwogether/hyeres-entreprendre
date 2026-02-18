@@ -7,7 +7,7 @@
 @endphp
 <x-slot:seo>
     {!! seo($seo ?? null) !!}
-</x-slot>
+</x-slot:seo>
 <section>
     <x-front.banner-page background-image="{{ asset('background-member.png') }}" :as-patern="true"
         title="{{ strtoupper($member->company_name) }}" subtitle="{{ $member->getFullName() }}" />
@@ -105,7 +105,7 @@
         <div class="py-14 md:py-20">
             <h3 class="mb-7 text-xl font-extrabold text-black dark:text-white sm:text-2xl">
                 {{ __('app.pages.member-page.presentation') }}</h3>
-            <div class="richeditor-custom text-gray-700 max-w-full">
+            <div class="richeditor-custom text-gray-700 dark:text-gray-300 max-w-full">
                 {{ $this->renderContent() }}
             </div>
         </div>

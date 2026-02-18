@@ -11,7 +11,7 @@
                             {{ getSectionPresentationSubTitle() }}
                         </h6>
                     </div>
-                    <div class="richeditor-custom text-gray-700">
+                    <div class="richeditor-custom text-gray-700 dark:text-gray-300">
                         {{ getSectionPresentationContent() }}
                     </div>
                 </div>

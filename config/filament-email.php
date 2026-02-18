@@ -29,7 +29,7 @@ return [
 
     'label' => null,
 
-    'prune_enabled' => true,
+    'prune_enabled' => false,
 
     'prune_crontab' => '0 0 * * *',
 
@@ -38,7 +38,7 @@ return [
     ],
 
     'pagination_page_options' => [
-        10, 25, 50, 'all',
+        10, 25, 50,
     ],
 
     'attachments_disk' => 'local',

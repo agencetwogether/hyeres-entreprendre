@@ -110,6 +110,9 @@ class MembersTable
             })
             ->emptyStateIcon(MemberResource::getNavigationIcon())
             ->emptyStateHeading(__('app.members.table.empty_state.heading'))
-            ->emptyStateDescription(__('app.members.table.empty_state.description'));
+            ->emptyStateDescription(__('app.members.table.empty_state.description'))
+            ->paginated([5, 10, 25])
+            ->defaultPaginationPageOption(10);
+        // ->deferLoading();
     }
 }

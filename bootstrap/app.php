@@ -35,6 +35,9 @@ return Application::configure(basePath: dirname(__DIR__))
                 }
             }
         })->daily()->at('01:05');
+
+        // Delete old emails record
+        $schedule->exec('/usr/bin/php8.4-cli /kunden/homepages/23/d4298669514/htdocs/www/v1/artisan model:prune --model="RickDBCN\\FilamentEmail\\Models\\Email"')->daily()->at('14:24');
     })
     ->withMiddleware(function (Middleware $middleware) {
         //

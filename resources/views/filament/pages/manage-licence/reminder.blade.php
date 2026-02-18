@@ -1,6 +1,3 @@
-<p class="font-bold underline">
-    {{ __('app.pages.manage-licence.form.placeholder.reminder') }}
-</p>
 <div class="mt-2 flex flex-col gap-2">
     <div class="flex flex-row gap-2 items-center">
         <span class="flex flex-row gap-2 items-center">

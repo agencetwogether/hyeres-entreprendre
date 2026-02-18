@@ -11,7 +11,6 @@ use App\Models\Member;
 use App\Models\User;
 use App\Services\PlanService;
 use App\Services\RichEditorService;
-use Awcodes\Shout\Components\Shout;
 use Carbon\Carbon;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Repeater;
@@ -21,6 +20,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Schemas\Components\Callout;
 use Filament\Schemas\Components\Fieldset;
 use Filament\Schemas\Components\Text;
 use Filament\Schemas\Components\Utilities\Get;
@@ -225,15 +225,15 @@ class MemberFields
             ->columnSpanFull();
     }*/
 
-    public static function getCheckOutdatedPlanChosen(): Shout
+    public static function getCheckOutdatedPlanChosen(): Callout
     {
-        return Shout::make('checkOutdatedPlanChosen')
-            ->content(function (Model $record, PlanService $planService) {
+        return Callout::make(__('app.members.form.label.callouts.plan_outdated.title'))
+            ->description(function (Model $record, PlanService $planService) {
 
                 $plan = $record->onePlanSubscriptions;
                 $nextDates = $planService->calculateNewPeriod($plan->plan->invoice_interval, $plan->plan->invoice_period, Carbon::now()->startOfYear());
 
-                return new HtmlString(__('app.members.form.label.plan_outdated',
+                return new HtmlString(__('app.members.form.label.callouts.plan_outdated.description',
                     [
                         'startDateOutdated' => $plan->starts_at->format('d/m/Y'),
                         'endDateOutdated' => $plan->ends_at->format('d/m/Y'),
@@ -243,7 +243,7 @@ class MemberFields
                     ]
                 ));
             })
-            ->color('danger');
+            ->danger();
 
     }
 

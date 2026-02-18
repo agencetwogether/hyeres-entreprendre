@@ -32,6 +32,7 @@ use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Schemas\Components\Fieldset;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Tabs;
 use Filament\Support\Colors\Color;
 use Filament\Support\Enums\Width;
 use Filament\Support\Facades\FilamentView;
@@ -47,6 +48,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use MarcelWeidum\ExpirationNoticePlugin\ExpirationNoticePlugin;
 use RickDBCN\FilamentEmail\FilamentEmail;
 use ShuvroRoy\FilamentSpatieLaravelBackup\FilamentSpatieLaravelBackupPlugin;
 use Yebor974\Filament\RenewPassword\RenewPasswordPlugin;
@@ -120,6 +122,7 @@ class AdminPanelProvider extends PanelProvider
             ->favicon(asset('img/favicon.png'))
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->plugins([
+                ExpirationNoticePlugin::make(),
                 FilamentErrorMailerPlugin::make(),
                 FilamentEmail::make(),
                 FilamentSpatieLaravelBackupPlugin::make()
@@ -171,6 +174,10 @@ class AdminPanelProvider extends PanelProvider
         Table::configureUsing(fn (Table $table) => $table
             ->deferFilters(false)
             ->striped()
+        );
+
+        Tabs::configureUsing(fn (Tabs $tabs) => $tabs
+            ->persistTab()
         );
 
         Section::configureUsing(fn (Section $section) => $section

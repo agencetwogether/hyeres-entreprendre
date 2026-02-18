@@ -5,7 +5,6 @@ namespace App\Filament\Pages;
 use App\Enums\IntervalPeriod;
 use App\Services\RichEditorService;
 use App\Settings\LicenceSettings;
-use Awcodes\Shout\Components\Shout;
 use BackedEnum;
 use BezhanSalleh\FilamentShield\Traits\HasPageShield;
 use Filament\Forms\Components\DatePicker;
@@ -14,12 +13,14 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Pages\SettingsPage;
+use Filament\Schemas\Components\Callout;
 use Filament\Schemas\Components\Fieldset;
 use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Schema;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\HtmlString;
 
 class ManageLicence extends SettingsPage
 {
@@ -53,9 +54,10 @@ class ManageLicence extends SettingsPage
                         Tab::make(__('app.pages.manage-licence.form.tabs.resume'))
                             ->icon('phosphor-note')
                             ->schema([
-                                Shout::make('so-important')
-                                    ->icon(false)
-                                    ->content(view('filament.pages.manage-licence.reminder')),
+                                Callout::make(__('app.pages.manage-licence.form.placeholder.reminder'))
+                                    ->description(new HtmlString(view('filament.pages.manage-licence.reminder')))
+                                    ->info()
+                                    ->columnSpanFull(),
                             ]),
                         Tab::make(__('app.pages.manage-licence.form.tabs.general'))
                             ->icon('phosphor-info')

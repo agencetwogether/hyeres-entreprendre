@@ -13,7 +13,6 @@
 @source '../../../../resources/views/partials/**/*';
 @source '../../../../vendor/filament/**/*';
 
-@source '../../../../vendor/awcodes/shout/resources/views/**/*';
 @source '../../../../vendor/diogogpinto/filament-auth-ui-enhancer/resources/views/**/*';
 @source '../../../../vendor/jaocero/radio-deck/resources/views/**/*';
 @source '../../../../vendor/biostate/filament-menu-builder/resources/views/**/*';

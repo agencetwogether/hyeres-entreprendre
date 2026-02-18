@@ -1,13 +1,12 @@
 <x-slot:seo>
     {!! seo($seo ?? null) !!}
-</x-slot>
+</x-slot:seo>
 <section>
     <x-front.banner-page backgroundImage="{{ $event->getFirstMediaUrl('banner', 'webp') }}" />
     <div class="md:-mt-14 lg:-mt-24 md:mb-8">
         <div class="max-w-4xl mx-auto px-4">
             <div class="relative z-[1]">
                 <div class="md:rounded-xl bg-white md:shadow-lg p-4 dark:bg-slate-700 lg:p-10">
-
                     <h1
                         class="mb-6 text-center text-3xl md:text-2xl font-extrabold text-secondary dark:text-white lg:text-[40px] lg:leading-[50px]!">
                         {{ $event->title }}
@@ -46,7 +45,7 @@
     </div>
 
     <div class="mx-auto max-w-6xl px-4 py-20">
-        <div class="richeditor-custom text-gray-700 max-w-full">
+        <div class="richeditor-custom text-gray-700 dark:text-gray-300 max-w-full">
             {{ $this->renderContent() }}
         </div>
 

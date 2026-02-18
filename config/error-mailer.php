@@ -28,4 +28,25 @@ return [
     ],
 
     'storage_path' => storage_path('app/errors'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Error Filtering
+    |--------------------------------------------------------------------------
+    |
+    | Configure which errors should be ignored.
+    |
+    */
+    'ignore' => [
+        'levels' => [
+            // 'debug',
+            // 'info',
+            // 'notice',
+            // 'warning',
+        ],
+        'exceptions' => [
+            // \Symfony\Component\HttpKernel\Exception\NotFoundHttpException::class,
+            // \Illuminate\Validation\ValidationException::class,
+        ],
+    ],
 ];

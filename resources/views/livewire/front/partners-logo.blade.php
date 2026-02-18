@@ -5,7 +5,7 @@
         </h2>
         <div class="mt-12 grid grid-cols-2 gap-4 md:gap-7 lg:grid-cols-4">
             @foreach ($members as $member)
-                <livewire:front.card-member-logo :member="$member" :key="$member->id">
+                <livewire:front.card-member-logo :member="$member" :key="$member->id" />
             @endforeach
         </div>
     </div>

@@ -1,7 +1,6 @@
 <x-slot:seo>
     {!! seo($seo ?? null) !!}
-</x-slot>
-
+</x-slot:seo>
 <section>
     <x-front.banner-page
         background-image="{{ getLegalSettingsHeader()['banner'] ? getLegalSettingsHeader()['banner'] : (array_key_exists('show_default_banner', getLegalSettingsHeader()) && getLegalSettingsHeader()['show_default_banner'] ? asset('img/test/bg-patent.png') : null) }}"

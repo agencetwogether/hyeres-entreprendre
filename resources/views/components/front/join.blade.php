@@ -7,7 +7,7 @@
                         {{ getSectionJoinTitle() }}
                     </h4>
                 </div>
-                <div class="mx-auto max-w-4xl mb-8 richeditor-custom text-gray-700">
+                <div class="mx-auto max-w-4xl mb-8 richeditor-custom text-gray-700 dark:text-gray-300">
                     {{ getSectionJoinContent() }}
                 </div>
                 <div class="flex justify-center gap-6">

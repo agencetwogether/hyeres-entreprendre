@@ -14,35 +14,35 @@ use App\Livewire\Front\Pages\Posts;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', Home::class)
+Route::livewire('/', Home::class)
     ->name('home');
 
 Route::get('/inscription/{invitation}', ContactInvitationController::class)
     ->middleware('signed')
     ->name('contact.invitation.accept');
 
-Route::get('actualites', Posts::class)
+Route::livewire('actualites', Posts::class)
     ->name('posts.index');
-Route::get('actualites/{post:slug}', Post::class)
+Route::livewire('actualites/{post:slug}', Post::class)
     ->name('post.show');
 
-Route::get('evenements', Events::class)
+Route::livewire('evenements', Events::class)
     ->name('events.index');
-Route::get('evenements/{event:slug}', Event::class)
+Route::livewire('evenements/{event:slug}', Event::class)
     ->name('event.show');
 
-Route::get('annuaire', Members::class)
+Route::livewire('annuaire', Members::class)
     ->name('members.index');
-Route::get('annuaire/membre/{member:ulid}', Member::class)
+Route::livewire('annuaire/membre/{member:ulid}', Member::class)
     ->name('member.show');
 
-Route::get('contact', Contact::class)
+Route::livewire('contact', Contact::class)
     ->name('contact');
 
-Route::get('mentions-legales', Legal::class)
+Route::livewire('mentions-legales', Legal::class)
     ->name('legal');
 
-Route::get('politique-de-confidentialite', Policy::class)
+Route::livewire('politique-de-confidentialite', Policy::class)
     ->name('policy');
 
 Route::get('/scheduler-edit', function () {

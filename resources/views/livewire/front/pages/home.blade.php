@@ -1,19 +1,18 @@
 <x-slot:seo>
     {!! seo($seo ?? null) !!}
-</x-slot>
-
+</x-slot:seo>
 <div>
-    @if(getSectionIntroductionIsVisible())
-        <x-front.intro/>
+    @if (getSectionIntroductionIsVisible())
+        <x-front.intro />
     @endif
-    @if(getSectionPresentationIsVisible())
-        <x-front.presentation/>
+    @if (getSectionPresentationIsVisible())
+        <x-front.presentation />
     @endif
-    @if(getSectionJoinIsVisible())
-        <x-front.join/>
+    @if (getSectionJoinIsVisible())
+        <x-front.join />
     @endif
-    <livewire:front.partners-logo/>
-    <livewire:front.members-logo/>
-    <livewire:front.events/>
-    <livewire:front.posts/>
+    <livewire:front.partners-logo />
+    <livewire:front.members-logo />
+    <livewire:front.events />
+    <livewire:front.posts />
 </div>

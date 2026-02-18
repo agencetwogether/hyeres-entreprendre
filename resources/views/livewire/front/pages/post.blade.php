@@ -1,6 +1,6 @@
 <x-slot:seo>
     {!! seo($seo ?? null) !!}
-</x-slot>
+</x-slot:seo>
 <section>
     <x-front.banner-page backgroundImage="{{ $post->getFirstMediaUrl('featured_image', 'webp') }}" />
     <div class="md:-mt-14 lg:-mt-24 md:mb-8">
@@ -43,7 +43,7 @@
     </div>
 
     <div class="mx-auto max-w-6xl px-4 py-20">
-        <div class="richeditor-custom text-gray-700 max-w-full">
+        <div class="richeditor-custom text-gray-700 dark:text-gray-300 max-w-full">
             {{ $this->renderContent() }}
         </div>
         <x-front.social-share />

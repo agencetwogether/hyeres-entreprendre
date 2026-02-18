@@ -27,7 +27,7 @@
             @endif
             <div class="flex items-center gap-2">
                 <span>
-                    <x-icon class="h-6 w-6 text-white" name="phosphor-calendar-dots"></x-icon>
+                    <x-icon class="h-6 w-6 text-white" name="phosphor-calendar-dots" />
                 </span>
                 <p class="text-sm font-semibold">
                     {{ $post->published_at->format('d/m/Y') }}

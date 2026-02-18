@@ -111,8 +111,14 @@ class EditProfile extends BaseEditProfile
             return;
         }
 
-        session()->forget('password_hash_'.Filament::getCurrentPanel()->getAuthGuard());
-        Filament::auth()->login($this->getUser());
+        if (request()->hasSession() && array_key_exists('password', $data)) {
+            request()->session()->put([
+                'password_hash_'.Filament::getAuthGuard() => $data['password'],
+            ]);
+        }
+
+        $this->data['password'] = null;
+        $this->data['passwordConfirmation'] = null;
 
         $this->editPasswordForm->fill();
 

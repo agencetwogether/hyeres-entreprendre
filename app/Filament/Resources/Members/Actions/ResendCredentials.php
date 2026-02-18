@@ -69,6 +69,11 @@ class ResendCredentials extends Action
 
             if ($record->user) {
 
+                if (auth()->user()->id == $record->user->id) {
+                    return false;
+
+                }
+
                 /*if ($record->user->last_logged_at != null) {
 
                     return false;

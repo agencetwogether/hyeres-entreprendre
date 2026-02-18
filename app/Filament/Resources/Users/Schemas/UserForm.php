@@ -3,8 +3,10 @@
 namespace App\Filament\Resources\Users\Schemas;
 
 use App\Filament\Resources\Users\Schemas\Components\UserFields;
+use Filament\Facades\Filament;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
+use Illuminate\Database\Eloquent\Model;
 
 class UserForm
 {
@@ -42,7 +44,8 @@ class UserForm
                         UserFields::getEmail(),
                         UserFields::getFirstname(),
                         UserFields::getPhone(),
-                        UserFields::getFieldPassword(),
+                        UserFields::getFieldPassword()
+                            ->visible(fn (Model $record): bool => Filament::auth()->user()->id !== $record->id),
                     ])
                     ->columns(),
             ]);

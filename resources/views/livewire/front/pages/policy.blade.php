@@ -3,7 +3,7 @@
 @endphp
 <x-slot:seo>
     {!! seo($seo ?? null) !!}
-</x-slot>
+</x-slot:seo>
 
 <section>
     <x-front.banner-page

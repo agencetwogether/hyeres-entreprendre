@@ -1,6 +1,6 @@
 <x-slot:seo>
     {!! seo($seo ?? null) !!}
-</x-slot>
+</x-slot:seo>
 <section>
     <x-front.banner-page
         background-image="{{ getPostSettingsHeader()['banner'] ? getPostSettingsHeader()['banner'] : (array_key_exists('show_default_banner', getPostSettingsHeader()) && getPostSettingsHeader()['show_default_banner'] ? asset('img/test/why-bg.svg') : null) }}"
@@ -38,7 +38,7 @@
                                 class="text-2xl font-extrabold text-black transition hover:text-secondary dark:text-white dark:hover:text-secondary">
                                 {{ $post->title }}
                             </a>
-                            <p>
+                            <p class="dark:text-gray-300">
                                 {{ $post->generateExcerpt }}
                             </p>
                         </div>

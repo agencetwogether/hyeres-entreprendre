@@ -5,7 +5,6 @@ namespace App\Filament\Pages;
 use App\Enums\SocialNetwork;
 use App\Settings\GeneralSettings;
 use Asmit\FilamentUpload\Forms\Components\AdvancedFileUpload;
-use Awcodes\Shout\Components\Shout;
 use BackedEnum;
 use BezhanSalleh\FilamentShield\Traits\HasPageShield;
 use Filament\Forms\Components\FileUpload;
@@ -16,6 +15,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Pages\SettingsPage;
+use Filament\Schemas\Components\Callout;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Components\Tabs\Tab;
@@ -277,9 +277,9 @@ class ManageGeneralSettings extends SettingsPage
                         Tab::make(__('app.pages.manage-settings.form.tabs.emails_client'))
                             ->icon('heroicon-o-at-symbol')
                             ->schema([
-                                Shout::make('so-important')
-                                    ->icon(false)
-                                    ->content(new HtmlString('<p class="font-bold underline">'.__('app.pages.manage-settings.form.shout.so-important.title').'</p><p>'.__('app.pages.manage-settings.form.shout.so-important.content').'</p>'))
+                                Callout::make(__('app.pages.manage-settings.form.callout.notice_customers_emails.title'))
+                                    ->description(new HtmlString('<p>'.__('app.pages.manage-settings.form.callout.notice_customers_emails.content').'</p>'))
+                                    ->info()
                                     ->columnSpanFull(),
                                 Repeater::make('emails_client')
                                     ->label(__('app.pages.manage-settings.form.label.emails_client'))

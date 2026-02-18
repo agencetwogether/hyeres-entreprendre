@@ -1,6 +1,6 @@
 <x-slot:seo>
     {!! seo($seo ?? null) !!}
-</x-slot>
+</x-slot:seo>
 <section>
     <x-front.banner-page
         background-image="{{ getEventSettingsHeader()['banner'] ? getEventSettingsHeader()['banner'] : (array_key_exists('show_default_banner', getEventSettingsHeader()) && getEventSettingsHeader()['show_default_banner'] ? asset('img/test/bg-patent.png') : null) }}"
@@ -24,7 +24,7 @@
                                 src="{{ $event->getFirstMediaUrl('banner', 'webp') }}" alt="">
                         </div>
                         <div class="place-content-center p-4">
-                            <ul class="flex flex-col gap-3">
+                            <ul class="flex flex-col gap-3 dark:text-gray-300">
                                 <li class="flex flex-wrap gap-4 items-center">
                                     <x-icon class="h-6 w-6 dark:text-white" name="phosphor-calendar-dots" />
                                     <div class="text-sm">

@@ -5,8 +5,8 @@
     <div class="max-w-6xl mx-auto px-4">
         <div class="grid gap-y-10 gap-x-4 py-14 sm:grid-cols-3 lg:grid-cols-5 lg:py-[100px]">
             <div class="relative col-span-2">
-                <img src="{{ getClientLogoDark() }}" alt="plurk" class="w-3/4 light-mode-btn hidden" />
-                <img src="{{ getClientLogo() }}" alt="plurk" class="w-1/2 md:w-2/3 dark-mode-btn" />
+                <img src="{{ getClientLogoDark() }}" alt="plurk" class="w-3/4 hidden dark:block" />
+                <img src="{{ getClientLogo() }}" alt="plurk" class="w-1/2 md:w-2/3 dark:hidden" />
                 @if (!empty(getSocialsNetworks()))
                     <ul class="mt-12 flex items-center gap-8">
                         @foreach (getSocialsNetworks() as $item)
