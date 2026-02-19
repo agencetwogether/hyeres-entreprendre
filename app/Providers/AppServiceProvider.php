@@ -5,7 +5,11 @@ namespace App\Providers;
 use App\Concerns\UseColorsTrait;
 // use App\Models\Subscription;
 use App\Notifications\CustomFilamentResetPasswordNotification;
+use App\Policies\MenuItemPolicy;
+use App\Policies\MenuPolicy;
 use App\Policies\PlanPolicy;
+use Biostate\FilamentMenuBuilder\Models\Menu;
+use Biostate\FilamentMenuBuilder\Models\MenuItem;
 use Carbon\Carbon;
 use Filament\Auth\Notifications\ResetPassword as FilamentResetPassword;
 use Filament\Support\Facades\FilamentColor;
@@ -38,6 +42,8 @@ class AppServiceProvider extends ServiceProvider
         Model::preventLazyLoading(! app()->isProduction());
 
         Gate::policy(Plan::class, PlanPolicy::class);
+        Gate::policy(Menu::class, MenuPolicy::class);
+        Gate::policy(MenuItem::class, MenuItemPolicy::class);
 
         Carbon::setLocale(config('app.locale'));
 
