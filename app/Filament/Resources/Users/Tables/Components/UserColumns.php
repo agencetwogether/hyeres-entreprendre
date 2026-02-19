@@ -30,7 +30,7 @@ class UserColumns
             ->searchable(query: function (Builder $query, string $search): Builder {
                 return $query
                     ->where('name', 'like', "%{$search}%")
-                    ->where('firstname', 'like', "%{$search}%");
+                    ->orWhere('firstname', 'like', "%{$search}%");
             });
     }
 
