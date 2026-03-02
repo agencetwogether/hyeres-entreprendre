@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Members\Schemas;
 
 use App\Filament\Resources\Members\Schemas\Components\MemberFields;
+use Filament\Schemas\Components\Callout;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Group;
 use Filament\Schemas\Components\Tabs;
@@ -69,6 +70,12 @@ class MemberForm
                         Tab::make(__('app.members.form.tabs.member_type'))
                             ->icon('phosphor-tag')
                             ->schema([
+                                Callout::make(__('app.members.form.label.plan_type_title'))
+                                    ->color(null)
+                                    ->info()
+                                    ->footer([
+                                        MemberFields::getPlan(),
+                                    ]),
                                 MemberFields::getMemberType(),
                                 MemberFields::getOfficeRole(),
                             ]),

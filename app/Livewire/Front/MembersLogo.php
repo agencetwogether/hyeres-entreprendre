@@ -14,19 +14,20 @@ class MembersLogo extends Component
 
     public function mount()
     {
-        /*$this->members = Member::whereHas('onePlanSubscriptions', function (Builder $query) {
-            $query->where('name->fr', 'Membre');
-            // $query->where('slug', 'like', '%membre%');
+        $this->members = Member::whereHas('onePlanSubscriptions.plan', function (Builder $query) {
+            // $query->where('name->fr', 'Membre');
+            $query->where('slug', 'adherent');
         })
             ->where('is_published', true)
-            ->get();*/
-        $this->members = Member::query()
-            ->where('member_type', MemberType::MEMBER)
-            ->where('is_published', true)
-            /*->whereHas('onePlanSubscriptions', function (Builder $query) {
-                $query->findActive();
-            })*/
             ->get();
+
+        // $this->members = Member::query()
+        //    ->where('member_type', MemberType::MEMBER)
+        //    ->where('is_published', true)
+        /*->whereHas('onePlanSubscriptions', function (Builder $query) {
+            $query->findActive();
+        })*/
+        //    ->get();
 
     }
 

@@ -266,7 +266,17 @@ class MemberFields
 
             }
 
-            return new HtmlString(__('app.members.form.label.plan_type_label', ['name' => $record->onePlanSubscriptions?->name, 'period' => $record->onePlanSubscriptions?->plan->invoice_period, 'interval' => IntervalPeriod::from($record->onePlanSubscriptions?->plan->invoice_interval)->getLabel(), 'price' => $record->onePlanSubscriptions?->plan->price, 'currency' => $record->onePlanSubscriptions?->plan->currency]));
+            if (blank($record->onePlanSubscriptions)) {
+                return new HtmlString(__('app.members.form.label.plan_type_label_none'));
+            }
+
+            return new HtmlString(__('app.members.form.label.plan_type_label', [
+                'name' => $record->onePlanSubscriptions?->name,
+                'period' => $record->onePlanSubscriptions?->plan->invoice_period,
+                'interval' => IntervalPeriod::from($record->onePlanSubscriptions?->plan->invoice_interval)->getLabel(),
+                'price' => $record->onePlanSubscriptions?->plan->price,
+                'currency' => $record->onePlanSubscriptions?->plan->currency,
+            ]));
 
         })
             ->color('neutral')

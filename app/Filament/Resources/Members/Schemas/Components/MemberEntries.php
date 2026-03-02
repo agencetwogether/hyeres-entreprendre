@@ -16,8 +16,10 @@ use Filament\Schemas\Components\Fieldset;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Group;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Text;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\HtmlString;
+use Illuminate\Support\Str;
 use Ysfkaya\FilamentPhoneInput\Infolists\PhoneEntry;
 use Ysfkaya\FilamentPhoneInput\PhoneInputNumberType;
 
@@ -298,6 +300,21 @@ class MemberEntries
         }
 
         return $section;
+    }
+
+    public static function getSectionNoSubscription(bool $owner = false): Section
+    {
+        return Section::make($owner ? __('app.members.infolist.section.current_subscription.title_owner') : __('app.members.infolist.section.current_subscription.title'))
+            ->description($owner ? __('app.members.infolist.section.current_subscription.description_owner') : __('app.members.infolist.section.current_subscription.description'))
+            ->icon('phosphor-tag')
+            ->iconColor('success')
+            ->schema([
+                Text::make(__('app.members.form.label.plan_type_label_none').' '.Str::lower(__('app.members.form.label.plan_type_title')))
+                    ->color('neutral'),
+            ])
+            ->collapsible()
+            ->persistCollapsed()
+            ->columnSpanFull();
     }
 
     public static function getSectionPastSubscriptions(): Section

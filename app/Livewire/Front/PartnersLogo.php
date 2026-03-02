@@ -14,21 +14,21 @@ class PartnersLogo extends Component
 
     public function mount()
     {
-        /*$this->members = Member::whereHas('onePlanSubscriptions', function (Builder $query) {
-            $query->where('name->fr', 'Partenaire');
-            // $query->where('slug', 'like', '%partenaire%');
+        $this->members = Member::whereHas('onePlanSubscriptions.plan', function (Builder $query) {
+            // $query->where('name->fr', 'Partenaire');
+            $query->where('slug', 'partenaire');
         })
             ->where('is_published', true)
             ->get();
-        */
-        $this->members = Member::query()
-            ->where('member_type', MemberType::PARTNER)
-            ->orWhere('member_type', MemberType::OFFICE)
-            ->where('is_published', true)
-            /*->whereHas('onePlanSubscriptions', function (Builder $query) {
-                $query->findActive();
-            })*/
-            ->get();
+
+        // $this->members = Member::query()
+        //    ->where('member_type', MemberType::PARTNER)
+        //    ->orWhere('member_type', MemberType::OFFICE)
+        //    ->where('is_published', true)
+        /*->whereHas('onePlanSubscriptions', function (Builder $query) {
+            $query->findActive();
+        })*/
+        //    ->get();
 
     }
 

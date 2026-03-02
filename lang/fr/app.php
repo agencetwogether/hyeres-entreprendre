@@ -1322,6 +1322,8 @@ return [
                 'company_website' => 'Site internet',
                 'plan_type' => 'Type d\'adhésion',
                 'plan_type_label' => ':name (:price :currency pour :period :interval)',
+                'plan_type_title' => 'Adhésion soucrite',
+                'plan_type_label_none' => 'Aucune',
                 'plan_type_label_discounted' => ':name (<span class="line-through">:price :currency pour :period :interval</span>)<br>Réduction de <span class="text-success-600">:discount_rate</span> soit :new_price :currency pour :period :interval',
                 'callouts' => [
                     'plan_outdated' => [
