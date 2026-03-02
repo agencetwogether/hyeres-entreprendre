@@ -93,7 +93,7 @@ class PostFields
             ->closeOnDateSelection()
             ->prefixIcon('phosphor-calendar')
             ->default(now())
-            ->minDate(fn (string $operation): ?Carbon => $operation == 'create' ? Carbon::today() : null)
+            ->minDate(fn (string $operation, ?Model $record): ?Carbon => $operation == 'create' ? Carbon::today() : $record->published_at)
             ->required();
     }
 
