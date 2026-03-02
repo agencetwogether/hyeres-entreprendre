@@ -29,7 +29,7 @@ class Posts extends Component
     {
         return view('livewire.front.pages.posts', [
             'posts' => Post::query()
-                // ->whereDate('published_at', '>=', now())
+                ->whereDate('published_at', '<=', today())
                 ->latest('published_at')
                 ->paginate($this->perPage),
             'seo' => new SEOData(

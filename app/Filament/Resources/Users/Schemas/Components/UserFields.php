@@ -32,7 +32,8 @@ class UserFields
             ->automaticallyCropImagesToAspectRatio()
             ->automaticallyResizeImagesMode('cover')
             ->automaticallyResizeImagesToWidth('400')
-            ->automaticallyResizeImagesToHeight('400');
+            ->automaticallyResizeImagesToHeight('400')
+            ->optimize();
     }
 
     public static function getFirstname(): TextInput

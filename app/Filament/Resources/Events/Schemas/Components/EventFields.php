@@ -34,7 +34,8 @@ class EventFields
             ->automaticallyCropImagesToAspectRatio()
             ->automaticallyResizeImagesMode('cover')
             ->automaticallyResizeImagesToWidth('1920')
-            ->automaticallyResizeImagesToHeight('1080');
+            ->automaticallyResizeImagesToHeight('1080')
+            ->optimize();
     }
 
     public static function getTitle(): TextInput
@@ -149,7 +150,9 @@ class EventFields
             ->displayFormat(getDisplayDate())
             ->closeOnDateSelection()
             ->prefixIcon('phosphor-calendar')
-            ->minDate(fn (string $operation): ?Carbon => $operation == 'create' ? Carbon::today() : null);
+            ->default(now())
+            ->minDate(fn (string $operation, ?Model $record): ?Carbon => $operation == 'create' ? Carbon::today() : $record->published_at)
+            ->required();
     }
 
     public static function getLocation(): TextInput

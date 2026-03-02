@@ -63,7 +63,7 @@ class PageContactSettings extends SettingsPage
                                         FileUpload::make('content.presentation.image')
                                             ->label(__('app.pages.contact-page-settings.form.tabs.general.image'))
                                             ->image()
-                                            ->optimize('webp')
+                                            ->optimize()
                                             ->imageAspectRatio('1:1')
                                             ->automaticallyOpenImageEditorForAspectRatio()
                                             ->automaticallyCropImagesToAspectRatio()

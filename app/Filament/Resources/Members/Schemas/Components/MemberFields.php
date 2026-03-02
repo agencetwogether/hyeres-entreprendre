@@ -48,7 +48,8 @@ class MemberFields
             ->automaticallyResizeImagesMode('cover')
             ->automaticallyResizeImagesToWidth('400')
             ->automaticallyResizeImagesToHeight('400')
-            ->columnSpanFull();
+            ->columnSpanFull()
+            ->optimize();
     }
 
     public static function getFirstName(): TextInput
@@ -363,6 +364,7 @@ class MemberFields
             ->automaticallyResizeImagesMode('cover')
             ->automaticallyResizeImagesToWidth('800')
             ->automaticallyResizeImagesToHeight('450')
+            ->optimize()
             ->columnSpanFull();
     }
 

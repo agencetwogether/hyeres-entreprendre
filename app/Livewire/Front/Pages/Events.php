@@ -29,7 +29,7 @@ class Events extends Component
     {
         return view('livewire.front.pages.events', [
             'events' => Event::query()
-                ->whereDate('published_at', '<=', now())
+                ->whereDate('published_at', '<=', today())
                 ->latest()
                 ->paginate($this->perPage),
             'seo' => new SEOData(

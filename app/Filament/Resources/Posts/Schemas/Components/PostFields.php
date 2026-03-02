@@ -31,7 +31,8 @@ class PostFields
             ->automaticallyCropImagesToAspectRatio()
             ->automaticallyResizeImagesMode('cover')
             ->automaticallyResizeImagesToWidth('1920')
-            ->automaticallyResizeImagesToHeight('1080');
+            ->automaticallyResizeImagesToHeight('1080')
+            ->optimize();
     }
 
     public static function getTitle(): TextInput
@@ -91,7 +92,9 @@ class PostFields
             ->displayFormat(getDisplayDate())
             ->closeOnDateSelection()
             ->prefixIcon('phosphor-calendar')
-            ->minDate(fn (string $operation): ?Carbon => $operation == 'create' ? Carbon::today() : null);
+            ->default(now())
+            ->minDate(fn (string $operation): ?Carbon => $operation == 'create' ? Carbon::today() : null)
+            ->required();
     }
 
     public static function getAuthor(): Select

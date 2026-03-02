@@ -30,7 +30,7 @@ class HeaderFormComponents
             ->label(__('app.general.header-settings.form.label.banner'))
             ->directory('banner-page')
             ->image()
-            ->optimize('webp')
+            ->optimize()
             ->imageAspectRatio('16:9')
             ->automaticallyOpenImageEditorForAspectRatio()
             ->automaticallyCropImagesToAspectRatio()
