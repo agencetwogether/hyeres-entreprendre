@@ -11,7 +11,8 @@ class MemberListItems extends Component
 
     public function render()
     {
-        $members = Member::without('onePlanSubscriptions')->find($this->memberIds)->keyBy('id');
+        $members = Member::with('onePlanSubscriptions.plan')->has('onePlanSubscriptions')->find($this->memberIds)->keyBy('id');
+        // $members = Member::without('onePlanSubscriptions')->find($this->memberIds)->keyBy('id');
 
         $orderedMembers = collect($this->memberIds)->map(fn ($id) => $members[$id]);
 

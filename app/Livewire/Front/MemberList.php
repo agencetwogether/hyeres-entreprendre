@@ -58,14 +58,36 @@ class MemberList extends Component
     {
         $this->memberIdChunks = Member::query()
             ->where('is_published', true)
+            ->has('onePlanSubscriptions')
             /*->whereHas('onePlanSubscriptions', function (Builder $query) {
                 $query->findActive();
             })*/
             ->inRandomOrder();
 
-        if ($this->memberType && $this->memberType !== 'activity') {
-            $this->memberIdChunks = $this->memberIdChunks->where('member_type', $this->memberType);
+        if (
+            $this->memberType
+            && $this->memberType == 'office'
+            && $this->memberType !== 'activity'
+        ) {
+            $this->memberIdChunks = $this->memberIdChunks->where('member_type', MemberType::OFFICE->value);
         }
+
+        if (
+            $this->memberType
+            && $this->memberType == 'member'
+            && $this->memberType !== 'activity'
+        ) {
+            $this->memberIdChunks = $this->memberIdChunks->whereRelation('onePlanSubscriptions.plan', 'slug', 'adherent');
+        }
+
+        if (
+            $this->memberType
+            && $this->memberType == 'partner'
+            && $this->memberType !== 'activity'
+        ) {
+            $this->memberIdChunks = $this->memberIdChunks->whereRelation('onePlanSubscriptions.plan', 'slug', 'partenaire');
+        }
+
         if ($this->search) {
             $this->memberIdChunks = $this->memberIdChunks
                 ->where(function (Builder $query) {

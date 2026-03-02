@@ -1,8 +1,11 @@
 @php
     use App\Enums\MemberType;
-    $is_partner = $member->member_type == MemberType::PARTNER;
-    $is_member = $member->member_type == MemberType::MEMBER;
+    $is_partner = $member->onePlanSubscriptions->plan->slug == 'partenaire';
+    //$is_partner = $member->member_type == MemberType::PARTNER;
+    $is_member = $member->onePlanSubscriptions->plan->slug == 'adherent';
+    //$is_member = $member->member_type == MemberType::MEMBER;
     $is_office = $member->member_type == MemberType::OFFICE;
+
 @endphp
 <div
     class="max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white dark:bg-slate-700 shadow-xl rounded-lg text-gray-600 dark:text-white">
@@ -24,17 +27,12 @@
             @if ($is_partner)
                 <svg class="w-full font-semibold uppercase tracking-wider opacity-5 fill-primary dark:fill-primary-950"
                     viewBox="0 0 110 18">
-                    <text x="0" y="15">{{ $member->member_type->getLabel() }}</text>
+                    <text x="0" y="15">{{ MemberType::PARTNER->getLabel() }}</text>
                 </svg>
             @elseif($is_member)
                 <svg class="w-full font-semibold uppercase tracking-wider opacity-5 fill-secondary dark:fill-secondary-950"
                     viewBox="0 0 96 18">
-                    <text x="0" y="15">{{ $member->member_type->getLabel() }}</text>
-                </svg>
-            @else
-                <svg class="w-full font-semibold uppercase tracking-wider opacity-5 fill-blue-500 dark:fill-blue-950"
-                    viewBox="0 0 72 18">
-                    <text x="0" y="15">{{ $member->member_type->getLabel() }}</text>
+                    <text x="0" y="15">{{ MemberType::MEMBER->getLabel() }}</text>
                 </svg>
             @endif
         </div>
@@ -43,14 +41,19 @@
             'absolute z-10 text-base top-0 right-0 px-6 py-2 transition duration-300 ease-in-out rounded-bl-lg cursor-default text-white',
             'bg-primary' => $is_partner,
             'bg-secondary' => $is_member,
-            'bg-blue-500' => $is_office,
         ])>
             @if ($is_partner || $is_member || $is_office)
-                {{ $member->member_type->getLabel() }} @if ($is_office && filled($member->office_role))
-                    - {{ $member->office_role->getLabel() }}
-                @endif
+                {{ $member->onePlanSubscriptions->plan->name }}
             @endif
         </span>
+
+        @if ($is_office)
+            <span @class([
+                'absolute z-10 text-base top-0 left-0 px-6 py-2 transition duration-300 ease-in-out rounded-br-lg cursor-default text-white bg-blue-500',
+            ])>
+                {{ MemberType::OFFICE->getLabel() }}
+            </span>
+        @endif
     </div>
 
     <div
@@ -63,11 +66,13 @@
             'text-2xl font-semibold mb-2',
             'text-primary' => $is_partner,
             'text-secondary' => $is_member,
-            'text-blue-500' => $is_office,
         ])>
             {{ $member->getFullName() }}
         </h2>
         <p class="text-xl uppercase">{{ $member->company_name }}</p>
+        @if ($is_office && filled($member->office_role))
+            <p class="text-blue-500">{{ $member->office_role->getLabel() }}</p>
+        @endif
     </div>
     <div class="my-6 p-2">
         <img class="object-cover object-center w-full mx-auto"
@@ -80,7 +85,6 @@
                     'h-6 w-6',
                     'text-primary' => $is_partner,
                     'text-secondary' => $is_member,
-                    'text-blue-500' => $is_office,
                 ]) name="phosphor-phone" />
                 <a
                     href="tel:{{ phone($member->phone)->formatNational() }}">{{ phone($member->phone)->formatNational() }}</a>
@@ -92,7 +96,6 @@
                     'h-6 w-6',
                     'text-primary' => $is_partner,
                     'text-secondary' => $is_member,
-                    'text-blue-500' => $is_office,
                 ]) name="phosphor-at" />
                 <a class="break-all" href="mailto:{{ $member->email }}">{{ $member->email }}</a>
             </div>
@@ -103,7 +106,6 @@
                     'h-6 w-6',
                     'text-primary' => $is_partner,
                     'text-secondary' => $is_member,
-                    'text-blue-500' => $is_office,
                 ]) name="phosphor-globe" />
                 <a target="_blank" href="{{ $member->company_website }}">{{ __('app.pages.member-page.website') }}</a>
             </div>
