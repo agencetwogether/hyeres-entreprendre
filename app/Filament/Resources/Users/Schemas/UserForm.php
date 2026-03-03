@@ -45,7 +45,7 @@ class UserForm
                         UserFields::getFirstname(),
                         UserFields::getPhone(),
                         UserFields::getFieldPassword()
-                            ->visible(fn (Model $record): bool => Filament::auth()->user()->id !== $record->id),
+                            ->visible(fn (?Model $record): bool => Filament::auth()->user()->id !== $record?->id),
                     ])
                     ->columns(),
             ]);
