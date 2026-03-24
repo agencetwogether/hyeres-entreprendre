@@ -46,7 +46,7 @@ return new class extends SettingsMigration
         $this->migrator->add('general.generator_email', 'contact@agencetwogether.fr');
         $this->migrator->add('general.generator_phone', '+33652460152');
         $this->migrator->add('general.generator_support_name', 'Support Agence Twogether');
-        $this->migrator->add('general.generator_support_email', 'support@agencetwogether.fr');
+        $this->migrator->add('general.generator_support_email', 'contact@agencetwogether.fr');
         $this->migrator->add('general.app_title_page', 'Administration Hyères Entreprendre');
         $this->migrator->add('general.app_title_prefix_page', 'Application Hyères Entreprendre - ');
         $this->migrator->add('general.app_salutations_internal', "Bien cordialement, <br>Maxime, Administrateur de l'application");
