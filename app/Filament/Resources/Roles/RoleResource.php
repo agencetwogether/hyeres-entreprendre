@@ -25,12 +25,18 @@ use Filament\Schemas\Schema;
 use Filament\Support\Enums\FontWeight;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class RoleResource extends BaseResource
 {
+    public static function getRecordTitle(?Model $record): string|Htmlable|null
+    {
+        return $record->name->getLabel();
+    }
+
     public static function form(Schema $schema): Schema
     {
         return $schema
