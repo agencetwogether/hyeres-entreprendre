@@ -35,6 +35,7 @@ use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Tabs;
 use Filament\Support\Colors\Color;
 use Filament\Support\Enums\Width;
+use Filament\Support\Facades\FilamentIcon;
 use Filament\Support\Facades\FilamentView;
 use Filament\Tables\Table;
 use Filament\View\PanelsRenderHook;
@@ -147,6 +148,11 @@ class AdminPanelProvider extends PanelProvider
 
     public function boot(): void
     {
+        FilamentIcon::register([
+            'panels::sidebar.expand-button' => 'phosphor-sidebar',
+            'panels::sidebar.collapse-button' => 'phosphor-sidebar-simple',
+        ]);
+
         FileUpload::configureUsing(function (FileUpload $fileUpload): void {
             $fileUpload
                 // ->visibility('public')

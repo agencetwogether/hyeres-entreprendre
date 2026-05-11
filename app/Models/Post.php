@@ -50,6 +50,7 @@ class Post extends Model implements HasMedia
         $query->whereNotNull('published_at');
     }
 
+    #[Scope]
     protected function draft(Builder $query): void
     {
         $query->whereNull('published_at');
