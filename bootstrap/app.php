@@ -21,8 +21,8 @@ return Application::configure(basePath: dirname(__DIR__))
             ->withoutOverlapping();
 
         // Backup
-        $schedule->exec('/usr/bin/php8.4-cli /kunden/homepages/23/d4298669514/htdocs/www/v1/artisan backup:clean')->daily()->at('04:00');
-        $schedule->exec('/usr/bin/php8.4-cli /kunden/homepages/23/d4298669514/htdocs/www/v1/artisan backup:run --only-db')->daily()->at('04:30');
+        $schedule->exec('/usr/bin/php8.4-cli /kunden/homepages/23/d4298669514/htdocs/www/v1/artisan backup:clean --disable-notifications')->daily()->at('04:00');
+        $schedule->exec('/usr/bin/php8.4-cli /kunden/homepages/23/d4298669514/htdocs/www/v1/artisan backup:run --only-db --disable-notifications')->daily()->at('04:30');
         $schedule->exec('/usr/bin/php8.4-cli /kunden/homepages/23/d4298669514/htdocs/www/v1/artisan backup:monitor')->daily()->at('04:45');
 
         // Remove old errors logs
